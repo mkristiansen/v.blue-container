@@ -10,6 +10,8 @@ wget -O cf.tgz http://cli.run.pivotal.io/stable?release=linux64-binary
 sudo tar -zxvf cf.tgz -C /usr/bin/
 wget https://static-ice.ng.bluemix.net/icecli-2.0.zip
 sudo pip install icecli-2.0.zip
+cd /vagrant
+sudo docker build -t tomcat:bluemix .
 SCRIPT
 
 VAGRANTFILE_API_VERSION = "2"
@@ -23,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :bluecontainer do |client_config| 
   
-    client_config.vm.box = "parallels/ubuntu-14.10_x64"
+    client_config.vm.box = "my/parallels/ubuntu-14.04"
     #client_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
     client_config.vm.network :private_network, :ip => "10.1.2.100"
     client_config.vm.hostname = "bluecontainer"
